@@ -15,6 +15,18 @@ import ContactClass from "../../models/Contact";
 
 type Props = ContactClass;
 
+const insertMaskInPhone = (phone: string) => {
+  const noMask = phone.replace(/\D/g, "");
+  const { length } = noMask;
+
+  if (length <= 11) {
+    return noMask
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(length === 11 ? /(\d{5})(\d)/ : /(\d{4})(\d)/, "$1-$2");
+  }
+  return phone; // Retorna o número sem modificações se a máscara não puder ser aplicada
+};
+
 const Contact = ({
   name: originalName,
   number: originalNumber,
@@ -53,39 +65,38 @@ const Contact = ({
     setEmail(originalEmail);
   }
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maskedPhone = insertMaskInPhone(e.target.value);
+    setNumber(maskedPhone);
+  };
+
   return (
     <S.Card>
       <S.Icons>
         <IoMdContact />
       </S.Icons>
-      <S.TextArea
+      <S.Campo
         disabled={!editing}
         value={name}
-        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-          setName(e.target.value)
-        }
+        onChange={(e) => setName(e.target.value)}
       />
 
       <S.Icons>
         <BsTelephoneFill />
       </S.Icons>
-      <S.TextArea
+      <S.Campo
         disabled={!editing}
         value={number}
-        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-          setNumber(e.target.value)
-        }
+        onChange={handlePhoneChange}
       />
 
       <S.Icons>
         <MdEmail />
       </S.Icons>
-      <S.TextArea
+      <S.Campo
         disabled={!editing}
         value={email}
-        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-          setEmail(e.target.value)
-        }
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <S.ButtonsContainer>

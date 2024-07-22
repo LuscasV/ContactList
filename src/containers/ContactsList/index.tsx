@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootReducer } from "../../store";
+
 import Contact from "../../components/Contact";
 
 const ContactList = () => {

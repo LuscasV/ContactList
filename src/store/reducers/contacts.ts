@@ -10,19 +10,19 @@ const initialState: ContactsState = {
     {
       id: 1,
       name: "Lucas Valadao",
-      number: "33 999343679",
+      number: "(33) 99934-3679",
       email: "lucassilva@gmail.com",
     },
     {
       id: 2,
       name: "Marilaine Renata",
-      number: "33 999365478",
+      number: "(33) 99936-5478",
       email: "marilaine@gmail.com",
     },
     {
       id: 3,
       name: "Maria Fernanda",
-      number: "33 999334829",
+      number: "(33) 99933-4829",
       email: "mariafernanda@gmail.com",
     },
   ],
@@ -46,9 +46,21 @@ const contactsSlice = createSlice({
         state.itens[contactIndex] = action.payload;
       }
     },
+    add: (state, action: PayloadAction<Contact>) => {
+      const existingContact = state.itens.find(
+        (contact) =>
+          contact.name.toLowerCase() === action.payload.name.toLowerCase()
+      );
+
+      if (existingContact) {
+        alert("Já existe um contato com esse nome");
+      } else {
+        state.itens.push(action.payload);
+      }
+    },
   },
 });
 
-export const { remove, edit } = contactsSlice.actions;
+export const { remove, edit, add } = contactsSlice.actions;
 
 export default contactsSlice.reducer;

@@ -4,7 +4,7 @@ import { Botao, Container } from "./styles";
 const AddButton = () => {
   return (
     <Container>
-      <Botao>
+      <Botao to="/new">
         <IoPersonAdd />
       </Botao>
     </Container>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import variables from "../../styles/variables";
 
 export const Card = styled.div`
   background-color: #444;
@@ -23,20 +24,18 @@ export const Email = styled.p`
   font-size: 15px;
 `;
 
-export const TextArea = styled.textarea`
+export const Campo = styled.input`
   font-size: 15px;
   color: #eee;
   background-color: transparent;
   border: none;
-  resize: none;
   margin-right: 5px;
   width: 100%;
 `;
 
 export const Icons = styled.span`
-  color: #3498db;
+  color: ${variables.blue};
   margin-right: 8px;
-  margin-bottom: 15px;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -48,7 +47,7 @@ export const ButtonsContainer = styled.div`
 export const RemoveButton = styled.button`
   font-weight: bold;
   font-size: 20px;
-  color: #e74c3c;
+  color: ${variables.red};
   border: none;
   cursor: pointer;
   background-color: #444;
@@ -58,7 +57,7 @@ export const RemoveButton = styled.button`
 export const CancelButton = styled.button`
   font-weight: bold;
   font-size: 20px;
-  color: #e74c3c;
+  color: ${variables.red};
   border: none;
   cursor: pointer;
   background-color: #444;
@@ -68,7 +67,7 @@ export const CancelButton = styled.button`
 export const EditButton = styled.button`
   font-weight: bold;
   font-size: 18px;
-  color: #f0932b;
+  color: ${variables.orange};
   border: none;
   cursor: pointer;
   background-color: #444;
@@ -76,7 +75,7 @@ export const EditButton = styled.button`
 `;
 
 export const SaveButton = styled.button`
-  color: #ffbe76;
+  color: ${variables.lightOrange};
   font-weight: bold;
   font-size: 18px;
   border: none;
